@@ -38,7 +38,7 @@ GLvoid display4(GLvoid) { // 주전자 3차원 물체
 
 }
 
-int main(int argc, char* argv[])
+int main1(int argc, char* argv[])
 {
 	// 초기화 함수들 
 	glutInit(&argc, argv);
