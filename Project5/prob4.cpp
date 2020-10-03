@@ -4,13 +4,10 @@ GLvoid drawScene(GLvoid) { // 주전자 3차원 물체
 	glClearColor(0.0f, 0.0f, 1.0f, 1.0f); // 바탕색을 'blue' 로 지정
 	glClear(GL_COLOR_BUFFER_BIT); // 설정된 색으로 전체를 칠하기
 
-	glColor4f(0.0f, 1.0f, 0.0f, 1.0f); //ractangle color
-	glRectf(-0.5f, -0.5f, 0.5f, 0.5f);
-	glFlush(); // 화면에 출력하기
-
+	glFinish();
 
 	glViewport(0, 0, 300, 300); // 윈도우 안 그림 위치
-	glColor4f(0.0f, 1.0f, 0.0f, 1.0f); // 그리기 색을 'green' 으로 지정
+	glColor4f(0.0f, 1.0f, 0.0f, 0.0f); // 그리기 색을 'green' 으로 지정
 	glutWireTeapot(0.5);
 
 	glFlush(); // 화면에 출력하기 // glFinish() 사용 가능
