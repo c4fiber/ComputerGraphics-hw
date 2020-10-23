@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <iostream>
 
 // This is a simple introductory program; its main window contains a static
 // picture of a tetrahedron, whose top vertex is white and whose bottom
@@ -14,34 +15,52 @@
 #include <GL/glut.h>
 #endif
 
-void mouseClick(GLint, GLint, GLint, GLint);
-void mouseMove(GLint, GLint);
-void display();
-void init();
+bool clickMouse = false;
+GLfloat clickX = 0, clickY = 0; // clicked point
+GLfloat moveX = 0.0, moveY = 0.0; // moved point
+GLfloat xAngle, yAngle;
 
+GLfloat keyX, keyY, keyZ;
 
-void mouseClick(GLint button, GLint state, GLint x, GLint y){
-
+void myMouse(GLint button, GLint state, GLint x, GLint y) {
+    if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN){
+        clickX = x;
+        clickY = y;
+    }
 }
 
-void mouseMove(GLint x, GLint y) {
+void myKeyboard(unsigned char pressedKey, GLint x, GLint y) {
+    switch (pressedKey) {
+    case'd':
+        keyX = (keyX + 0.01f);
+    }
+    std::cout << 21 << std::endl;
+}
 
+void mouseMotion(GLint x, GLint y) {
+    moveX = (GLfloat)(x - clickX) * 0.025f;
+    moveY = (GLfloat)(y - clickY) * 0.025f;
+
+    glutPostRedisplay();
 }
 
 // Clears the window and draws the tetrahedron.  The tetrahedron is  easily
 // specified with a triangle strip, though the specification really isn't very
 // easy to read.
 void display() {
+    float baseWidth = 4.5;
     glClear(GL_COLOR_BUFFER_BIT);
 
     // Draw a white grid "floor" for the tetrahedron to sit on.
     glColor3f(1.0, 1.0, 1.0);
     glBegin(GL_LINES);
-    for (GLfloat i = -2.5; i <= 2.5; i += 0.25) {
-        glVertex3f(i, 0, 2.5); glVertex3f(i, 0, -2.5);
-        glVertex3f(2.5, 0, i); glVertex3f(-2.5, 0, i);
+    for (GLfloat i = -baseWidth; i <= baseWidth; i += 0.25) {
+        glVertex3f(i, 0, baseWidth); glVertex3f(i, 0, -baseWidth);
+        glVertex3f(baseWidth, 0, i); glVertex3f(-baseWidth, 0, i);
     }
     glEnd();
+
+    glRotatef(20, 0, keyX, 0);
 
     // Draw the tetrahedron.  It is a four sided figure, so when defining it
     // with a triangle strip we have to repeat the last two vertices.
@@ -82,7 +101,7 @@ void init() {
     // bounds are -1.5..1.5.  The near clipping plane is 1 unit from the camera
     // and the far clipping plane is 40 units away.
     glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
+    glLoadIdentity(); // 변환행렬을 단위행렬로 초기화 함 (이전에 변환에 사용한 행렬이 남아있음)
     glFrustum(-2, 2, -1.5, 1.5, 1, 40);
 
     // Set up transforms so that the tetrahedron which is defined right at
@@ -95,6 +114,7 @@ void init() {
     glTranslatef(0, 0, -3);
     glRotatef(50, 1, 0, 0);
     glRotatef(70, 0, 1, 0);
+
 }
 
 // Initializes GLUT, the display mode, and main window; registers callbacks;
@@ -105,7 +125,11 @@ int main(int argc, char** argv) {
     glutInitWindowPosition(80, 80);
     glutInitWindowSize(800, 600);
     glutCreateWindow("A Simple Tetrahedron");
+
     glutDisplayFunc(display);
+    glutMouseFunc(myMouse);
+    glutKeyboardFunc(myKeyboard);
+    glutMotionFunc(mouseMotion);
     init();
     glutMainLoop();
 }

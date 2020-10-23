@@ -1,18 +1,19 @@
 #include <stdlib.h>
 #include "GL/glut.h"
 
-void mouseClick(int, int, int, int);
-void init();
-void display();
-void teapot();
-
+// function when mouse Left click
 void mouseClick(int button, int state, int x, int y) {
     if (state == GLUT_DOWN) {
-        rand() % 255
+        float temp[3] = {};
+        for (int i = 0; i < 3; i++) {
+            temp[i] = (rand() % 255) / 255;
+        }
+
+        glColor3f(temp[0], temp[1], temp[2]);
     }
 }
 
-void teapot() {
+void drawTeapot() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glPushMatrix();
@@ -21,6 +22,17 @@ void teapot() {
 	glColor3f(0.0, 1.0, 0.0);
 	glutSolidTeapot(2.0);
 	glPopMatrix();
+}
+
+void display() {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    glPushMatrix();
+    glTranslatef(0.0f, 0.0f, -7.0f);
+
+    glColor3f(0.0, 1.0, 0.0);
+    glutSolidTeapot(2.0);
+    glPopMatrix();
 }
 
 void init() {
