@@ -18,5 +18,14 @@
     <ClCompile Include="prob4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="hw1-source.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="prob2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="prob3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

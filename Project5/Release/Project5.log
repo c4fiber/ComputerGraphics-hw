@@ -1,0 +1,9 @@
+﻿  hw1-source.cpp
+  prob2.cpp
+  prob3.cpp
+  prob4.cpp
+prob3.obj : error LNK2005: _main이(가) prob2.obj에 이미 정의되어 있습니다.
+prob3.obj : error LNK2005: "void __cdecl drawScene(void)" (?drawScene@@YAXXZ)이(가) prob2.obj에 이미 정의되어 있습니다.
+prob4.obj : error LNK2005: _main이(가) prob2.obj에 이미 정의되어 있습니다.
+prob4.obj : error LNK2005: "void __cdecl drawScene(void)" (?drawScene@@YAXXZ)이(가) prob2.obj에 이미 정의되어 있습니다.
+C:\Users\nekot\Documents\GitHub\openGL_graphics\Release\hw1.exe : fatal error LNK1169: 여러 번 정의된 기호가 있습니다.
