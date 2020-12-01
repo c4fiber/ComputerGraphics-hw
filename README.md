@@ -19,4 +19,4 @@ debug : x86 변경하기
 
  추가 팁
 
-![image-20201022011016259](C:\Users\nekot\Documents\GitHub\openGL_graphics\01)
+![](./01.png)
